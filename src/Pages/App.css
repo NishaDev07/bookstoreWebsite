@@ -1,0 +1,860 @@
+*,a{
+  margin: 0;
+  padding: 0;
+}
+
+
+a, :visited{
+  color: #353535;
+  text-decoration: none;
+}
+
+#NavBar{
+  position: sticky;
+  top: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #d6f5f7;
+  align-items: center;
+  padding: 24px;
+  z-index: 100;
+}
+
+#Logo{
+  display: flex;
+  flex-direction: row;
+  color: #4084ec;
+  font-weight: bold;
+  font-size: 24px;
+  gap: 6px;
+}
+
+#logoImg{
+  width: 30px;
+}
+
+#Links{
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #353535;
+}
+
+#ShopButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  font-size: 24px;
+}
+
+#ShopButtons i{
+  cursor: pointer;
+}
+
+#WishCountBox{
+  display: flex;
+  flex-direction: row;
+}
+
+#WishNumber{
+  position: relative;
+  top: -8px;
+  left: -8px;
+  font-size: 14px;
+  border-radius: 50%;
+  background-color: red;
+  padding: 2px 6px !important;
+  color: white;
+  text-align: center;
+}
+
+#HeroSection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #d6f5f7;
+  min-height: 70svh;
+  padding:48px 12px;
+}
+
+#heroLeft{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-basis: 40%;
+  gap: 48px;
+}
+
+.heroLargeText{
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.blueText{
+  color: #4084ec;
+}
+
+.normalText{
+  color: #353535;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.inputBoxH{
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.inputField{
+  background-color: white;
+  border: none;
+  outline: none;
+  padding: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.235);
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.btnBlue{
+  border: none;
+  background-color: #4084ec;
+  color: white;
+  text-align: center;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#BookImages{
+  width: 340px;
+}
+
+#bestSellerSection, #shopSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  gap: 36px;
+}
+
+.largeText{
+  font-size: 48px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+.CardContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 48px;
+}
+
+
+#Card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-wrap: wrap;
+  gap: 8px;
+  cursor: pointer;
+}
+
+#ImageSection{
+  position: relative;
+}
+
+.cartImage{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  margin: 12px;
+  background-color: #4084ec;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cardImage{
+  max-height: 360px;
+  max-width: 100%;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.cardTitle{
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  text-align:center;
+}
+
+.cardPrice{
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(160, 32, 32);
+}
+
+#favouriteSection{
+  display: flex;
+  flex-direction: row;
+  margin: 48px 24px;
+}
+
+#BookCarousel{
+  width: 720px;
+}
+
+#favouriteRight{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  flex-basis: 40%;
+}
+
+#favouriteRight .heroLargeText{
+  font-weight: bold;
+  font-style: italic;
+}
+
+.lightBlue{
+  color: #97c8ff;
+}
+
+.ightBlueBtn{
+  background-color: #97c8ff;
+}
+
+.figureBoxContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 84px;
+}
+
+.figureBox{
+  display: flex;
+  flex-direction: column;
+  color: #353535;
+}
+
+.figure{
+  font-size: 28px;
+}
+
+.figureDesc{
+  font-size: 16px;
+}
+
+#footerSection{
+  background-color: white;
+  box-shadow: 0px -2px 2px rgba(73, 73, 73, 0.087);
+  margin-top: 12px;
+}
+
+#footerLinkBox{
+  display: flex;
+  flex-direction: row;
+  gap: 18%;
+  padding: 24px 36px 36px 36px;
+}
+
+.footerColumns{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #939393;
+}
+
+.footerTitle{
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.footerElement{
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#footerBottom{
+  background-color: rgb(23, 21, 33);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px 24px;
+}
+
+#SocialBox{
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  color: #d4d4d4;
+  font-size: 24px;
+  align-items: center;
+}
+
+#footerBottom #logoText{
+  color: #d4d4d4;
+}
+
+#feedbackSection{
+  display: flex;
+  flex-direction: column;  
+  justify-content: center;
+  align-items: center;
+  margin: 48px 0;
+}
+
+#feedBackCardContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 36px;
+  margin: 36px 16px;
+}
+
+#feedbackCard{
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 18px;
+  text-align:center;
+  background-color: rgb(253, 253, 253);
+  padding:16px 36px;
+  justify-content: space-around;
+  gap: 36px;
+  border-radius: 16px;
+  box-shadow: 0px 0px 5px rgba(139, 139, 139, 0.721);
+}
+
+#starBox{
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  color: gold;
+  font-size: 20px;
+}
+
+#avatarBox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+#avatarBox img{
+  width: 40px;
+}
+
+#circleBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.circle{
+  height: 16px;
+  width: 16px;
+  background-color: #353535;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.selectedCircle{
+  background-color: #4084ec;
+}
+
+#shopSection .CardContainer{
+  flex-wrap: wrap;
+}
+
+#ShopCard, #WishCard{
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  box-shadow: 0px 0px 5px #35353542;
+  border-radius: 6px;
+  max-width: 20%;
+}
+
+.shopCardTitle{
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  margin: 12px 0 24px 0;
+  text-wrap: wrap;
+}
+
+.shopCardInfo{
+    row-gap: 0px;
+    color: #353535;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.btn{
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  margin: 24px 0 0 0 ;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+}
+
+.buyBtn{
+  background-color: #4084ec;
+  transition: all 0.5s ease-in-out;
+  width: 100%;
+}
+
+.buyBtn:hover{
+  background-color: #003483;
+}
+
+#bookInfoCard{
+  display: flex;
+  flex-direction: row;
+  margin: 12px 48px;
+  padding: 12px;
+  gap: 24px;
+  border: 2px solid #353535;
+  border-radius: 8px;
+}
+
+#bookInfoCard img{
+  height: 360px;
+}
+
+#bookInfoRight{
+  display: flex;
+  flex-direction: column;
+  color: #707070;
+  flex-basis: 70%;
+  justify-content: space-between;
+}
+
+.bookTitle{
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0 0 24px 0;
+  color: black;
+}
+
+.bookAuthor, .bookCat{
+  font-size: 18px;
+  margin: 4px 0;
+}
+
+#buttonBox{
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.btn{
+  padding: 8px 12px;
+}
+.btnBlueBuy{
+  background-color: #4084ec;
+}
+
+.btnGreen{
+  background-color: darkgreen;
+}
+
+.btnRed{
+  background-color: darkred;
+}
+
+#shoppingCart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:12px;
+    margin: 20px;
+}
+
+#CartCard{
+  display: flex;
+  flex-direction: column;
+  margin: 12px 36px;
+  border: 2px solid #353535;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+#CartCardTop{
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+#CartCardTop img{
+  width: 120px;
+}
+
+#CartCenter{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cartTitle{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.cartAuthor{
+  font-size: 12px;
+  color: #d4d4d4;
+}
+
+.cartDescription{
+  color: #707070;
+  font-size: 14px;
+}
+
+.cartPrice{
+  font-weight: bold;
+}
+
+#CartQtyController{
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  gap: 8px;
+}
+
+.qtyBtn{
+  padding: 12px;
+  background-color: #4084ec;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  border:none;
+  outline: none;
+  cursor: pointer;
+}
+
+.qtyInput{
+  width: 50px;
+  text-align: center;
+}
+
+#CartCard .btnRed{
+  align-self: flex-end;
+  width: fit-content !important;
+}
+
+#WishCard{
+  max-width: 240px;
+}
+
+#WishlistSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+#WishlistSection .CardContianer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.crossImage{
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  margin: 12px;
+  background-color: rgb(165, 0, 0);
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.emptyCart{
+  width:290px;
+}
+
+.redText{
+  color: rgb(101, 0, 0);
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#loginContainer{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#loginBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 24px;
+  gap: 24px;
+  border: 2px solid #353535;
+  border-radius: 8px;
+}
+
+#loginForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+
+#libImg{
+  width: 600px;
+  box-shadow: 0px 4px 2px black;
+}
+
+#loginBox input{
+  padding: 12px;
+  border: 1px solid #939393;
+  border-radius: 4px;
+}
+
+#loginBox p{
+  font-size: 14px;
+}
+
+#loginBox button{
+  padding: 12px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid #939393;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.4s ease-in;
+}
+
+#loginBox button:hover{
+  box-shadow: 0px 0px 6px 1px #9393933a;
+  transform: scale(1.02);
+}
+
+#loginBox button i{
+  margin: 0 8px;
+}
+
+.italicText{
+  font-weight: bold;
+  font-style: italic;
+}
+
+.headText{
+  font-size: 24px !important;
+  font-weight: bold;
+}
+
+#Dasboard{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#DashBody{
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+#menuContainer{
+  background-color: rgb(255, 252, 252);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 36px;
+  box-shadow: 4px 0 2px rgba(201, 201, 201, 0.53);
+}
+
+.UserName{
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Option{
+  margin: 12px 0;
+  background-color: white;
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 2px rgba(116, 115, 115, 0.244);
+  cursor: pointer;
+  text-wrap: nowrap;
+}
+
+.Option i{
+  padding: 0 4px;
+}
+
+#dashContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+#InfoBox{
+  background-color: rgb(216, 216, 216);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 24px;
+  font-size: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px rgba(62, 62, 62, 0.993);
+  font-weight: 500;
+}
+
+#InfoBox i{
+  font-size: 84px;
+  color: rgb(0, 52, 0);
+}
+
+.infoRed{
+  color: rgb(114, 0, 0);
+  font-weight: normal;
+}
+
+#Uploadpage{
+  display: flex;
+  flex-direction: column;
+  padding:12px 24px;
+  gap: 24px;
+  text-align: center;
+}
+
+label{
+  text-align: left;
+}
+
+#Uploadpage form{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.inputRow{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.inputBox{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inputBox label{
+  font-weight: bold;
+}
+
+
+#Uploadpage form input, #Uploadpage form textarea, #Uploadpage form select{
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 12px;
+  outline: 2px solid black;
+  border-radius: 6px;
+  border: none;
+}
+
+.inputBox input, .inputBox select{
+  width: 380px;
+}
+
+.btnBox {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-self: center;
+}
+
+.redBtn{
+  background-color: rgb(160, 32, 32);
+}
+
+.blueBtn{
+  background-color: #4084ec;
+}
+
+#manageSection{
+  height: 100%;
+  padding: 12px 24px;
+  align-self: flex-start;
+}
+
+table{
+  border-collapse: collapse;
+  text-align: center;
+  align-content: center;
+  font-size: 14px;
+  margin-top: 24px;
+  box-shadow: 0px 0 2px rgba(201, 201, 201, 0.53);
+}
+
+th,td{
+  border: 1px solid rgba(235, 235, 235, 0.457);
+  padding: 12px;
+}
+
+th{
+  background-color: #f5f5f5;
+  color: rgb(16, 16, 47);
+  border: none;
+  padding: 24px 56px;
+  text-wrap: nowrap;
+}
+
+#manageSection button{
+  padding: 8px 12px;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  margin: 0px 4px;
+  cursor: pointer;
+}
+
+.greenButton{
+  background-color: green;
+}
+
+.redButton{
+  background-color: red;
+}
