@@ -7,42 +7,46 @@ export default function Signup() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [valid, setValid] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     async function handleSignup() {
-        if (password !== confirmPassword) {
-            alert("Passwords do not match");
+        // Basic input validation
+        if (!email || !password || !confirmPassword) {
+            setErrorMessage("All fields are required.");
             return;
         }
+        if (password !== confirmPassword) {
+            setErrorMessage("Passwords do not match.");
+            return;
+        }
+        // You can add more validations here (e.g., email format, password strength)
+
+        setLoading(true);
+        setErrorMessage(""); // Reset error message
+
         try {
-            const response = await fetch(`http://localhost:5000/createUser/`, {
+            const response = await fetch(`http://localhost:5000/signup`, {  // Modified endpoint
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, password }),  // Send email and password
             });
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
             const data = await response.json();
-            if (data.success) {
-                const responseTokenGenerate = await fetch(`http://localhost:5000/setToken/`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({}),
-                });
-                const tokendata = await responseTokenGenerate.json();
-                localStorage.setItem("LoginToken", tokendata.insertedId);
-                localStorage.setItem("LoggedInUserID", data._id);
-                setValid(true);
-            } else {
-                alert("Sign-up failed, please try again.");
+
+            if (!response.ok) {
+                throw new Error(data.error || "Sign-up failed, please try again."); // Improved error handling
             }
+
+            localStorage.setItem("LoginToken", data.token); // Store the JWT token
+            localStorage.setItem("LoggedInUserID", data.userId); // Store user ID
+            setValid(true);
         } catch (error) {
             console.error("There was a problem with the sign-up operation:", error);
-            alert("Error during sign-up. Please try again.");
+            setErrorMessage(error.message); // Show error message to the user
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -53,49 +57,49 @@ export default function Signup() {
         }
     }, [valid, nav]);
 
-    if (!valid) {
-        return (
-            <div className="signupContainer">
-                <div className="signupBox">
-                    <img src={LibImg} alt="Library" className="libImg" />
-                    <div className="signupForm">
-                        <h2>Sign Up</h2>
-                        <p>Join the community and start exploring.</p>
-                        <input
-                            type="text"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <input
-                            type="password"
-                            placeholder="Confirm Password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
+    return (
+        <div className="signupContainer">
+            <div className="signupBox">
+                <img src={LibImg} alt="Library" className="libImg" />
+                <div className="signupForm">
+                    <h2>Sign Up</h2>
+                    <p>Join the community and start exploring.</p>
+                    <input
+                        type="text"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    {loading ? (
+                        <button className="btnSignup" disabled>
+                            Signing Up...
+                        </button>
+                    ) : (
                         <button className="btnSignup" onClick={handleSignup}>
                             Sign Up
                         </button>
-                        {/* <p>
-                            Already have an account? <Link to="/">Login</Link>
-                        </p> */}
-                        <p>
-                            By signing up, I agree to the{" "}
-                            <a href="https://en.wikipedia.org/wiki/Library.com/Library">
-                                Terms of Use & Privacy Policy
-                            </a>
-                        </p>
-                    </div>
+                    )}
+                    {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message */}
+                    <p>
+                        By signing up, I agree to the{" "}
+                        <a href="https://en.wikipedia.org/wiki/Library.com/Library">
+                            Terms of Use & Privacy Policy
+                        </a>
+                    </p>
                 </div>
             </div>
-        );
-    }
-
-    return null;
+        </div>
+    );
 }

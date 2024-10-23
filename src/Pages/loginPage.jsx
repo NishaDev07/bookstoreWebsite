@@ -4,33 +4,38 @@ import { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha"; // Import the reCAPTCHA component
 
 export default function Login() {
-    const [passwordEntered, setpasswordEntered] = useState("");
+    const [passwordEntered, setPasswordEntered] = useState("");
     const [userName, setUserName] = useState("");
     const [captchaToken, setCaptchaToken] = useState(null); // State to store CAPTCHA token
     const [valid, setValid] = useState(false);
+    const [loading, setLoading] = useState(false); // State for loading
+    const [errorMessage, setErrorMessage] = useState(""); // State for error messages
 
     // Replace this with your actual Site Key
     const recaptchaSiteKey = "6LcX2mkqAAAAACheqHGuKTLEa6apitIeN9JgvCmI"; 
 
     useEffect(() => {
-        async function VerifyToken() {
+        async function verifyToken() {
             const LoginTokenStored = localStorage.getItem("LoginToken");
             if (LoginTokenStored) {
                 try {
-                    const response = await fetch(`http://localhost:5000/getToken/${LoginTokenStored}`);
+                    const response = await fetch(`http://localhost:5000/fetchToken/${LoginTokenStored}`);
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
                     }
                     const data = await response.json();
-                    if (data.type === "LoginToken") {
+                    
+                    // Ensure that data is valid and has the 'type' property
+                    if (data && data.type === "LoginToken") {
                         setValid(true);
                     }
                 } catch (error) {
                     console.error("There was a problem with the auth operation:", error);
+                    setErrorMessage("Authentication failed. Please log in again."); // Set error message
                 }
             }
         }
-        VerifyToken();
+        verifyToken();
     }, []);
 
     async function verifyAuth() {
@@ -38,33 +43,39 @@ export default function Login() {
             alert("Please complete the CAPTCHA");
             return;
         }
+        if (!userName || !passwordEntered) {
+            setErrorMessage("Please fill in both fields."); // Basic input validation
+            return;
+        }
+
+        setLoading(true); // Start loading
 
         try {
-            const response = await fetch(`http://localhost:5000/fetchToken/${userName}`);
+            const response = await fetch(`http://localhost:5000/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: userName, password: passwordEntered, captchaToken }), // Send email, password, and CAPTCHA token to the backend
+            });
+
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
             const data = await response.json();
-            if (passwordEntered === data.password) {
-                const responseTokenGenerate = await fetch(`http://localhost:5000/setToken/`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ captchaToken }), // Send the CAPTCHA token to the backend
-                });
-                const tokendata = await responseTokenGenerate.json();
-                localStorage.setItem("LoginToken", tokendata.insertedId);
-                localStorage.setItem("LoggedInUserID", data._id);
+
+            // Check if data contains token
+            if (data && data.token) {
+                localStorage.setItem("LoginToken", data.token); // Store token in local storage
                 setValid(true);
             } else {
-                setValid(false);
-                alert("Invalid Credentials");
+                setErrorMessage("Invalid credentials."); // Set error message
             }
         } catch (error) {
             console.error("There was a problem with the auth operation:", error);
-            setValid(false);
-            alert("Invalid Credentials");
+            setErrorMessage("Invalid credentials."); // Set error message
+        } finally {
+            setLoading(false); // End loading
         }
     }
 
@@ -90,20 +101,23 @@ export default function Login() {
                         <input
                             type="text"
                             placeholder="Email"
+                            value={userName} // Bind value for controlled component
                             onChange={(e) => setUserName(e.target.value)}
                         />
                         <input
                             type="password"
                             placeholder="Password"
-                            onChange={(e) => setpasswordEntered(e.target.value)}
+                            value={passwordEntered} // Bind value for controlled component
+                            onChange={(e) => setPasswordEntered(e.target.value)}
                         />
+                        {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message */}
                         {/* reCAPTCHA Component */}
                         <ReCAPTCHA
                             sitekey={recaptchaSiteKey} // Use your actual Site Key here
                             onChange={onCaptchaChange}
                         />
-                        <button className="btnLogin" onClick={verifyAuth}>
-                            Login <i className="fa-solid fa-right-to-bracket"></i>
+                        <button className="btnLogin" onClick={verifyAuth} disabled={loading}>
+                            {loading ? "Logging in..." : "Login"} <i className="fa-solid fa-right-to-bracket"></i>
                         </button>
                         <button className="btnLogin">
                             <i className="fa-brands fa-google"></i> Continue With Google
