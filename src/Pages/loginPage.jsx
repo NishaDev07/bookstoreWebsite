@@ -80,7 +80,7 @@ export default function Login(){
                         <input type="password" placeholder="Password" onChange={(e)=>setpasswordEntered(e.target.value)} />
                         <button className="btnLogin" onClick={()=>verifyAuth()}>Login<i className="fa-solid fa-right-to-bracket"></i></button>
                         <button className="btnLogin"><i className="fa-brands fa-google" ></i>Continue With Google</button>
-                        <p>Don't have an Account ? <Link to="/SignUp">Sign Up</Link></p>
+                        <p>Don't have an Account ? <Link to="/Signup">Sign Up</Link></p>
                         <p>By Continuing, I agree to the <a href="https://https://en.wikipedia.org/wiki/Library.com/Library">Terms of Use & Privacy Pilacy</a></p>
                 </div>
                 </div>

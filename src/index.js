@@ -14,6 +14,7 @@ import WishListPage from './Pages/WishListPage';
 import About from './Pages/About'
 import { ShoppingListProvider } from './contexts/ShoppingCartContext';
 import Login from './Pages/loginPage';
+import Signup from './Pages/SignupPage';
 import Dashboard from './Pages/DashboardBookSell';
 import EditPage from "./Components/EditPage";
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "/Signup",
+    element:<Signup/>
   },
   {
     path: "/Dashboard",
