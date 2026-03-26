@@ -1,4 +1,4 @@
-# BoundPages
+# MBook
 A polished full stack bookstore ecommerce portal with role based access, JWT auth, wishlist, cart, author publishing flow, manager approvals, Stripe checkout, AWS S3 file storage, semantic search with Pinecone, and a RAG grounded chatbot powered by OpenAI.
 
 ## Stack
