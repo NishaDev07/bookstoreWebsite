@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# BoundPages
+A polished full stack bookstore ecommerce portal with role based access, JWT auth, wishlist, cart, author publishing flow, manager approvals, Stripe checkout, AWS S3 file storage, semantic search with Pinecone, and a RAG grounded chatbot powered by OpenAI.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Stack
+Frontend: React + Vite + React Router + Context API
+Backend: Node.js + Express + MongoDB + Mongoose
+Auth: JWT
+Payments: Stripe Checkout + webhook
+Storage: AWS S3
+RAG: OpenAI embeddings + OpenAI text generation + Pinecone vector search
 
-## Available Scripts
+## Roles
+- customer: browse books, wishlist, cart, checkout, chatbot
+- author: submit books
+- manager: approve books, manage catalog, view orders
 
-In the project directory, you can run:
+## Features
+- JWT based login and role based route protection
+- book browsing, category filters, semantic search
+- cart and wishlist
+- Stripe payment flow
+- author upload with cover and book file to S3
+- automatic PDF text extraction for RAG indexing when possible
+- grounded chatbot that only answers from indexed content when context exists
 
-### `npm start`
+## Project Structure
+```text
+bookstore-portal/
+  client/
+  server/
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Environment Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Server `.env`
+Copy `server/.env.example` to `server/.env` and replace placeholders.
 
-### `npm test`
+### Client `.env`
+Copy `client/.env.example` to `client/.env` and replace placeholders.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Install
 
-### `npm run build`
+### Server
+```bash
+cd server
+npm install
+npm run dev
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Client
+```bash
+cd client
+npm install
+npm run dev
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## MongoDB
+Use a local MongoDB instance or MongoDB Atlas and set `MONGO_URI`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Stripe Webhook
+For local testing:
+```bash
+stripe listen --forward-to localhost:5000/api/payments/webhook
+```
+Then put the webhook secret into `STRIPE_WEBHOOK_SECRET`.
 
-### `npm run eject`
+## Pinecone Setup
+1. Create a serverless index in Pinecone.
+2. Set dimension to match your embedding model output. If you keep the default code and use `text-embedding-3-small`, keep dimensions aligned with your chosen value.
+3. Put the index host and API key into the server env.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## AWS S3 Setup
+1. Create a bucket
+2. Set IAM credentials with PutObject/GetObject permissions
+3. Put the bucket name and region into the server env
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Seed a Manager and Sample Books
+```bash
+cd server
+npm run seed
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Notes
+- The chatbot is grounded with retrieved chunks from Pinecone.
+- If a PDF is uploaded, the backend attempts text extraction for vector indexing.
+- If extraction is weak, the author can also provide `description` and `sampleText`.
+- Managers approve books before customers can see them.
